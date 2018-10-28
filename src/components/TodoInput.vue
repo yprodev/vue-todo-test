@@ -3,7 +3,7 @@
     <input type="text"
            placeholder="Type your task.."
            v-model="newValue">
-    <button @click="$emit('adding-new-task', newValue)">Add Todo</button>
+    <button>Add Todo</button>
   </div>
 </template>
 
