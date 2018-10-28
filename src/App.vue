@@ -1,28 +1,23 @@
 <template>
   <div id="app">
-    <todo-input></todo-input>
-    <todo-list>
-      <todo-item
-        v-for="(task, index) in tasks"
-        :key="task.id"
-        :name="task.name"
-        :status="task.status">
-      </todo-item>
-    </todo-list>
+    <todo-input v-on:tasking="createTaskObject">
+      <div slot="btn-add-task">
+        Special button text
+      </div>
+    </todo-input>
+    <todo-list :tasks="tasks"></todo-list>
   </div>
 </template>
 
 <script>
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
-import TodoItem from './components/TodoItem.vue';
 
 export default {
   name: 'app',
   components: {
     TodoInput,
-    TodoList,
-    TodoItem
+    TodoList
   },
   data () {
     return {
@@ -34,6 +29,22 @@ export default {
         { id: 5, name: 'Go to bed', status: false },
       ]
     };
+  },
+  computed: {
+    newId() {
+      let lastItem = this.tasks[this.tasks.length - 1];
+      return lastItem.id + 1;
+    }
+  },
+  methods: {
+    createTaskObject: function(name) {
+      let taskObj = {
+        id: this.newId,
+        name,
+        status: false
+      };
+      this.tasks.push(taskObj);
+    }
   }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <li v-if="status">{{ name }}</li>
+  <li :class="{ 'completed': status }">{{ name }}</li>
 </template>
 
 <script>
@@ -12,6 +12,7 @@
 </script>
 
 <style>
-
-
+  .completed {
+    text-decoration: line-through;
+  }
 </style>
