@@ -1,12 +1,14 @@
 <template>
   <div>
     <input type="text"
-           placeholder="Type your task.."
-           v-model="newValue"
-           @keyup.enter="addTask">
+      placeholder="Type your task.."
+      v-model="inputValue"
+      @keyup.enter="addTask">
     <button @click="addTask"
-            :disabled="newValue === ''">
-      <slot name="btn-add-task">Add Todo</slot>
+      :disabled="isDisabled()">
+      <slot name="btn-add-task">
+        Add Todo
+      </slot>
     </button>
   </div>
 </template>
@@ -15,26 +17,17 @@
   export default {
     data() {
       return {
-        newValue: ''
+        inputValue: ''
       };
     },
     methods: {
       addTask() {
-        this.$emit('tasking', this.newValue);
-        this.newValue = '';
+        if (this.isDisabled()) return;
+        this.$emit('tasking', this.inputValue);
       },
-      isValue() {
-        return this.newValue !== '';
+      isDisabled() {
+        return this.inputValue === '';
       }
-    },
-    mounted() {
-
     }
   }
-
 </script>
-
-<style>
-
-
-</style>

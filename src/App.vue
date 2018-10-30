@@ -19,7 +19,7 @@ export default {
     TodoInput,
     TodoList
   },
-  data () {
+  data() {
     return {
       tasks: [
         { id: 1, name: 'Go to the park', status: true },
@@ -30,16 +30,10 @@ export default {
       ]
     };
   },
-  computed: {
-    newId() {
-      let lastItem = this.tasks[this.tasks.length - 1];
-      return lastItem.id + 1;
-    }
-  },
   methods: {
     createTaskObject: function(name) {
       let taskObj = {
-        id: this.newId,
+        id: new Date(),
         name,
         status: false
       };
@@ -48,7 +42,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

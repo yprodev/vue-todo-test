@@ -1,26 +1,24 @@
 <template>
   <ul>
-    <todo-item
-      v-for="(task, index) in tasks"
+    <common-item
+      v-for="task in tasks"
       :key="task.id"
-      :name="task.name"
-      :status="task.status">
-    </todo-item>
+      :task="task">
+    </common-item>
   </ul>
-
 </template>
 
 <script>
-  import TodoItem from './TodoItem.vue';
+  import CommonItem from '../common/CommonItem.vue';
 
   export default {
-    props: ['tasks'],
     components: {
-      TodoItem
+      CommonItem
+    },
+    props: {
+      tasks: {
+        type: Array
+      }
     }
   }
 </script>
-
-<style>
-
-</style>
